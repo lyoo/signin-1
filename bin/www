@@ -11,7 +11,7 @@ var http = require('http');
 
 
 var options = {
-  host: 'www.amaxteam.com',
+  host: 'www.cpcsign.com',
   key: fs.readFileSync('./bin/2_www.cpcsign.com.key'),
   cert: fs.readFileSync('./bin/1_www.cpcsign.com_bundle.crt')
 };
