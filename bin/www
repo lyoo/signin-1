@@ -7,30 +7,21 @@ var fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('signin:server');
 var http = require('http');
-
-
+var https = require('https');
 
 var options = {
   host: 'www.cpcsign.com',
   key: fs.readFileSync('./bin/2_www.cpcsign.com.key'),
   cert: fs.readFileSync('./bin/1_www.cpcsign.com_bundle.crt')
 };
-var https = require('https');
-//https.createServer(options, app).listen(443);
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '443');
-
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
+var server = https.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
