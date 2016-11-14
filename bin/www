@@ -16,7 +16,7 @@ var options = {
   cert: fs.readFileSync('./bin/1_www.cpcsign.com_bundle.crt')
 };
 var https = require('https');
-https.createServer(options, app).listen(443);
+//https.createServer(options, app).listen(443);
 
 /**
  * Get port from environment and store in Express.
