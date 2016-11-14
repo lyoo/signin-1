@@ -21,7 +21,13 @@ var options = {
 
 var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
-var server = https.createServer(app);
+//var server = https.createServer(app);
+
+/**
+ * Create HTTP server.
+ */
+var server = https.createServer(options, app).listen(443);
+
 
 /**
  * Listen on provided port, on all network interfaces.
