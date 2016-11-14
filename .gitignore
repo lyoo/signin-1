@@ -1,0 +1,13 @@
+#项目
+/*.project
+#node_modules
+node_modules/
+dev/
+dist/
+maps/
+
+#webstorm编辑器相关
+.idea/
+others/
+tools/
+log/

@@ -3,16 +3,27 @@
 /**
  * Module dependencies.
  */
-
+var fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('signin:server');
 var http = require('http');
+
+
+
+var options = {
+  host: 'www.amaxteam.com',
+  key: fs.readFileSync('./bin/2_www.cpcsign.com.key'),
+  cert: fs.readFileSync('./bin/1_www.cpcsign.com_bundle.crt')
+};
+var https = require('https');
+https.createServer(options, app).listen(443);
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+
 app.set('port', port);
 
 /**
