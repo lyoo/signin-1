@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('signin:server');
 var http = require('http');
 var https = require('https');
+var config = require('../config.json');
 
 var options = {
   host: 'www.cpcsign.com',
@@ -18,25 +19,29 @@ var options = {
 /**
  * Get port from environment and store in Express.
  */
-
-var port = normalizePort(process.env.PORT || '443');
-app.set('port', port);
-//var server = https.createServer(app);
+var server,port;
+if(config.https){
+  port = 443;
+  server = https.createServer(options, app).listen(443);
+}else{
+  port = normalizePort(process.env.PORT || '3000');
+  app.set('port', port);
+  server = http.createServer(app);
+  server.listen(port);
+}
 
 /**
  * Create HTTP server.
  */
-var server = https.createServer(options, app).listen(443);
+//
 
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
 /**
  * Normalize a port into a number, string, or false.
  */

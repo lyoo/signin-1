@@ -1,0 +1,72 @@
+extends layout
+block content
+    script(src="http://mat1.gtimg.com/libs/jquery/1.12.0/jquery.min.js")
+    h2 创建任务
+    hr
+    form#task(action='/')
+        input(name='type',type='hidden',value='task')
+        | 任务名称：
+        input(name='name')
+        | 地点：
+        input(name='address')
+        | 开始时间
+        input(name='startTime',type='time')
+        | 经度
+        input(name='x')
+        | 纬度
+        input(name='y')
+        | 签到人数
+        input(name='count')
+        | 成员列表
+        input(name='userList')
+
+        <button id='submit'>提交</button>
+
+        h2 签到模拟
+    hr
+    form#sign(action='/')
+        input(name='type',type='hidden',value='sign')
+        | 任务ID：
+        input(name='taskID')
+        | 姓名：
+        input(name='name')
+        | 经度
+        input(name='x')
+        | 纬度
+        input(name='y')
+        | 说
+        input(name='say')
+
+        <button id='submit2'>提交</button>
+
+
+    script.
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var formdata = $("#task").serializeArray();
+            console.log(formdata);
+            $.ajax({
+                url:'/api',
+                type:'post',
+                data:formdata
+            }).done(function (d) {
+                console.log(d);
+            })
+        });
+
+
+        $('#submit2').click(function (e) {
+            e.preventDefault();
+            var formdata = $("#sign").serializeArray();
+            console.log(formdata);
+            $.ajax({
+                url:'/api',
+                type:'post',
+                data:formdata
+            }).done(function (d) {
+                console.log(d);
+            })
+        });
+
+
+
